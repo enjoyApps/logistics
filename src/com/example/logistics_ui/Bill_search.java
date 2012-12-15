@@ -33,6 +33,7 @@ import com.example.logistics_ui.util.Actions;
 import com.example.logistics_ui.util.HttpListener;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
 import com.example.logistics_ui.util.LogisticsInfoUtils;
+import com.example.logistics_ui.util.NetUtils;
 
 /**
  * @author zhenggangji
@@ -88,14 +89,33 @@ public class Bill_search extends Activity {
 		search_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
+				if (!NetUtils.isNetworkOk(Bill_search.this)) {
+					Toast.makeText(Bill_search.this, "当前网络不可用",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+
+				if (StringUtils
+						.isBlank(logistics_num_edit.getText().toString())) {
+					Toast.makeText(Bill_search.this, "请填写快递单号",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+
+				if (StringUtils
+						.isBlank(logistics_com_edit.getText().toString())) {
+					Toast.makeText(Bill_search.this, "请选择快递公司",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
 				// TODO: hide the keyboard
 				// View view = v.findViewById(android.R.id.bill_search);
 				// hideSoftKeyboard(this, view);
-				fetchlogisticsInfo(logistics_num_edit.getText()
-								.toString(), LogisticsCompanyUtil
-								.getPinyinByName(logistics_com_edit.getText()
-										.toString())
-						.toString());
+				fetchlogisticsInfo(
+						logistics_num_edit.getText().toString(),
+						LogisticsCompanyUtil.getPinyinByName(
+								logistics_com_edit.getText().toString())
+								.toString());
 
 			}
 		});
@@ -197,7 +217,7 @@ public class Bill_search extends Activity {
 	protected void fetchlogisticsInfo(String id, String company) {
 		// TODO Auto-generated method stub
 		pd = new ProgressDialog(this);
-		pd.setMessage("正在从物流平台获取信息...");
+		pd.setMessage("正在努力查询中...");
 		pd.show();
 		HttpTaskListener logisticsInfoListener = new HttpTaskListener(
 				HttpListener.GET_WULIUINFO);
@@ -287,6 +307,13 @@ public class Bill_search extends Activity {
 				logisticsInfo = LogisticsInfoUtils.parseLogisticsInfo(String
 						.valueOf(data));
 				pd.hide();
+				
+				if(logisticsInfo == null){
+					Toast.makeText(Bill_search.this, "当前网络繁忙请重试",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				Intent i = new Intent(Bill_search.this, Bill_result.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("logisticsInfo", logisticsInfo);
