@@ -1,12 +1,9 @@
 package com.example.logistics_ui;
 
-import com.example.logistics_ui.model.LogisticsCompany;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -14,13 +11,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TabHost.TabSpec;
+
+import com.example.logistics_ui.model.LogisticsCompany;
 
 public class Bill_search extends Activity {
 	
 	private LogisticsCompany selectedLogisticsCompany = null;
 	
 	private EditText logistics_com_edit = null;
+	
+	
 	
 	public static void hideSoftKeyboard (Activity activity, View view) {
 	  InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -59,6 +59,20 @@ public class Bill_search extends Activity {
 				startActivity(i);
             }
         });
+		
+		Button choose_num_button = (Button) findViewById(R.id.choose_num_button);
+		choose_num_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	
+            	// TODO: hide the keyboard
+//            	View view = v.findViewById(android.R.id.bill_search);
+//            	hideSoftKeyboard(this, view);
+
+				Intent i = new Intent(Bill_search.this, CaptureActivity.class);
+				startActivityForResult(i, 0);
+
+        }});
+		
 		
 	}
 
