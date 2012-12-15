@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+	
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+	    android:id="@+id/bill_overview"
+	    android:background="@drawable/background_search"
+	    android:layout_margin="10dp"
+	    android:padding="10dp"
+        >
+        
+	        <TextView
+	            android:id="@+id/com_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:text="圆通快递" />
+	        
+	        <ImageButton
+	            android:id="@+id/to_login_taobao"
+	            android:layout_width="20dp"
+	            android:layout_height="20dp"
+	            android:layout_marginLeft="10dp"
+	            android:layout_toRightOf="@id/com_name"
+	            android:background="@android:color/transparent"
+	            android:src="@drawable/device_access_call" />
+	        
+	        <TextView
+	            android:id="@+id/bill_no"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_below="@id/com_name"
+	            android:text="快递单号：12345677" />
+	        
+	        <TextView
+	            android:id="@+id/bill_lastest"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_below="@id/bill_no"
+	            android:text="最新状态：已到站 天津" />
+	        
+    </RelativeLayout>
+    
+    
+    <ListView android:id="@+id/android:list"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent" />    
+ 
+</LinearLayout>

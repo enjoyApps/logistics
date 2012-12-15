@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">快递管家</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- 物流单查询 -->
+    <string name="logistic_com_label">输入或选择物流公司</string>
+    <string name="title_activity_bill_result">Bill_result</string>
+    <string name="title_activity_parcel_list">Parcel_list</string>
+    <string name="title_activity_send_parcel">Send_parcel</string>
+    <string name="title_activity_logistics_list">Logistics_list</string>
+    <string name="title_activity_account_login">Account_login</string>
+    <string name="title_activity_main">快递管家</string>
+
+</resources>

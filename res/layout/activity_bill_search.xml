@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Bill_search" 
+    android:id="@+id/bill_search"
+    >
+	
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="15dp"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp" >
+       
+	    <!-- 物流公司 input -->
+	    <EditText
+	        android:id="@+id/logistics_com_edit"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="left"
+	        android:layout_weight="4"
+	        android:hint="输入或选择快递公司"
+	        android:inputType="text"
+	        android:nextFocusDown="@+id/logistics_num_edit"
+	        android:singleLine="true" />
+	    
+	    <!-- 物流选择 button -->
+	    <ImageButton
+	        android:id="@+id/choose_com_button"
+	        android:layout_width="60dp"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="right"
+	        android:src="@drawable/bg_select_com"  />
+
+    </LinearLayout> 
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp" >
+	    
+	    <!-- 物流号码 input -->
+	    <EditText
+	        android:id="@+id/logistics_num_edit"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="left"
+	        android:layout_weight="4"
+	        android:hint="输入或扫描快递单号"
+	        android:inputType="text"
+	        android:nextFocusDown="@+id/search_submit"
+	        android:singleLine="true" />
+	    
+	    <!-- 扫描 button -->
+	    <ImageButton
+	        android:id="@+id/choose_num_button"
+	        android:layout_width="60dp"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="right"
+	        android:src="@drawable/bg_scan" />
+
+    </LinearLayout> 
+    
+    <Button
+        android:id="@+id/search_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="查询" />
+        
+</LinearLayout>

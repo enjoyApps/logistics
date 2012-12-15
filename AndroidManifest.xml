@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.logistics_ui"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="16" />
+    
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Logistics_Manager"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Bill_search"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Logistics" >
+        </activity>
+        <activity
+            android:name=".Bill_result"
+            android:label="@string/title_activity_bill_result" >
+        </activity>
+        <activity
+            android:name=".Parcel_list"
+            android:label="@string/title_activity_parcel_list" >
+        </activity>
+        <activity
+            android:name=".Send_parcel"
+            android:label="@string/title_activity_send_parcel" >
+        </activity>
+        <activity
+            android:name=".Logistics_list"
+            android:label="@string/title_activity_logistics_list" >
+        </activity>
+        <activity
+            android:name=".Account_login"
+            android:label="@string/title_activity_account_login" >
+        </activity>
+        
+    </application>
+
+</manifest>
