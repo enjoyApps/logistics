@@ -30,6 +30,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.maps.MapController;
 
 import android.graphics.Color;
 import android.location.Address;
@@ -51,6 +52,7 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
 
     private Geocoder geocoder = null;
     
+    
     private List<String> locals;
 
     @Override
@@ -60,6 +62,9 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
         geocoder = new Geocoder(this,Locale.CHINA);
         
         setContentView(R.layout.activity_polyline);
+        
+        
+        
 
         locals = getIntent().getStringArrayListExtra("locals");
         Log.d("DEBUG", "locals---"+locals);
@@ -125,6 +130,7 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
                 .add(latLngArray).geodesic(true).color(Color.BLUE).width(5));
         
         mMap.setMyLocationEnabled(true);
+        
         
         // Move the map so that it is centered on the mutable polyline.
         if(ptList!=null && ptList.size()>0)
