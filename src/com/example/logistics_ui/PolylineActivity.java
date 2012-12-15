@@ -124,10 +124,11 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
         mMap.addPolyline((new PolylineOptions())
                 .add(latLngArray).geodesic(true).color(Color.BLUE).width(5));
         
-
+        mMap.setMyLocationEnabled(true);
+        
         // Move the map so that it is centered on the mutable polyline.
         if(ptList!=null && ptList.size()>0)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ptList.get(ptList.size()-1)));
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(ptList.get(ptList.size()-1)));
         
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
         

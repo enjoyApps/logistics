@@ -45,7 +45,7 @@
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDoue4-HLV7riCJ_PrULnzqYaEv7ymGCck" />
+            android:value="AIzaSyBUAHK7h80Iz4-8OLvP2L3O6gwuA81i5Ys" />
         
         <activity
             android:name=".Logistics_Manager"
