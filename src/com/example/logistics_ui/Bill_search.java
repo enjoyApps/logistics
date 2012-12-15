@@ -318,6 +318,13 @@ public class Bill_search extends Activity {
 					return;
 				}
 				
+				if(logisticsInfo.getTrackInfoList()==null || logisticsInfo.getTrackInfoList().size()==0){
+					Toast.makeText(Bill_search.this, "没有快递信息，请确认单号和快递公司",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
+				
 				Intent i = new Intent(Bill_search.this, Bill_result.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("logisticsInfo", logisticsInfo);
