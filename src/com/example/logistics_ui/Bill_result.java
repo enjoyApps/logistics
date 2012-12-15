@@ -34,9 +34,8 @@ public class Bill_result extends ListActivity {
 	
 	private LogisticsInfo logisticsInfo = null;
 	
-	private List<String> jingguo;
+	private List<String> jingguo = new ArrayList<String>();
 	
-	private ListView list = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class Bill_result extends ListActivity {
 
 		bill_no.setText(logisticsInfo.getMailNo());
 		
-		jingguo = getIntent().getStringArrayListExtra("locals");
+		jingguo = getIntent().getStringArrayListExtra("jingguo");
 		
 		bill_lastest = (TextView) findViewById(R.id.com_name);
 		
