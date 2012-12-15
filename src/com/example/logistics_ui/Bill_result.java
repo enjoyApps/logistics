@@ -54,7 +54,7 @@ public class Bill_result extends ListActivity {
 
 		com_name.setText(logisticsInfo.getExpTextName());
 
-		bill_no.setText("快递单号" + logisticsInfo.getMailNo());
+		bill_no.setText("快递单号: " + logisticsInfo.getMailNo());
 
 		jingguo = getIntent().getStringArrayListExtra("jingguo");
 
