@@ -18,23 +18,26 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentLeft="true"
-	            android:text="圆通快递" />
+	            android:text="圆通快递"
+	            style="@style/normalText.Big" />
 	        
 	        <ImageButton
-	            android:id="@+id/to_login_taobao"
-	            android:layout_width="20dp"
-	            android:layout_height="20dp"
+	            android:id="@+id/to_com_call"
+	            android:layout_width="40dp"
+	            android:layout_height="28dp"
 	            android:layout_marginLeft="10dp"
 	            android:layout_toRightOf="@id/com_name"
-	            android:background="@android:color/transparent"
-	            android:src="@drawable/device_access_call" />
+	            android:baselineAlignBottom="false"
+	            android:cropToPadding="false"
+	            android:src="@drawable/device_access_call_s" />
 	        
 	        <TextView
 	            android:id="@+id/bill_no"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_alignParentLeft="true"
-	            android:layout_below="@id/com_name"
+	            android:layout_alignLeft="@+id/com_name"
+	            android:layout_below="@+id/com_name"
+	            android:layout_marginTop="10dp"
 	            android:text="快递单号：12345677" />
 	        
 	        <TextView
@@ -42,7 +45,9 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentLeft="true"
+	            android:layout_alignLeft="@+id/com_name"
 	            android:layout_below="@id/bill_no"
+	            android:layout_marginTop="5dp"
 	            android:text="最新状态：已到站 天津" />
 	        
     </RelativeLayout>

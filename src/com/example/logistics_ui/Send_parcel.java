@@ -57,7 +57,7 @@ public class Send_parcel extends ListActivity {
             "电话联系" + logistics_list[position] + " 上门取件", 
             Toast.LENGTH_SHORT).show();
         	
-        	String num = "13437292435";
+        	String num = "10086";
         	
         	// 打开拨号键盘
         	Intent intent=new Intent("android.intent.action.CALL",Uri.parse("tel:" + num));
