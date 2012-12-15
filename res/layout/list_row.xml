@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="3dip"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/image_bg"
         android:layout_marginRight="5dip">
  
@@ -19,7 +20,8 @@
             android:id="@+id/list_image"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:src="@drawable/device_access_call"/>
+            android:background="@color/mention_background"
+            android:src="@drawable/device_access_call" />
  
     </LinearLayout>
  

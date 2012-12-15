@@ -27,7 +27,6 @@ public class Logistics_Manager extends TabActivity {
 		TabHost tabHost = getTabHost(); 
  
 		// Logistics List tab
-		//Intent intentParcel_list = new Intent().setClass(this, Parcel_list.class);
 		Intent intentParcel_list = new Intent().setClass(this, Account_login.class);
 		TabSpec tabSpecParcel_list = tabHost
 		  .newTabSpec("我的快递")
@@ -35,14 +34,14 @@ public class Logistics_Manager extends TabActivity {
 		  .setContent(intentParcel_list);
  
 		// Send Parcel tab
-		Intent intentSendParcel = new Intent().setClass(this, Send_parcel.class);
+		//Intent intentSendParcel = new Intent().setClass(this, Send_parcel.class);
+		Intent intentSendParcel = new Intent().setClass(this, CustomizedListView.class);
 		TabSpec tabSpecSendParcel = tabHost
 		  .newTabSpec("寄快递")
 		  .setIndicator("寄快递", null)
 		  .setContent(intentSendParcel);
  
 		// Bill Search tab
-		//Intent intentBillSearch = new Intent().setClass(this, Account_login.class);
 		Intent intentBillSearch = new Intent().setClass(this, Bill_search.class);
 		TabSpec tabSpecBillSearch = tabHost
 		  .newTabSpec("快递单查询")

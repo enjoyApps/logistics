@@ -4,19 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-
-import com.example.logistics_ui.model.LogisticsCompany;
-import com.example.logistics_ui.util.LogisticsCompanyUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.renderscript.Element;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import com.example.logistics_ui.model.LogisticsCompany;
+import com.example.logistics_ui.util.LogisticsCompanyUtil;
 
 public class CustomizedListView extends Activity {
     // All static variables
@@ -48,7 +44,7 @@ public class CustomizedListView extends Activity {
         	comList.add(map);
         }
  
-        ListView list = (ListView) findViewById(R.id.list);
+        list = (ListView) findViewById(R.id.list);
  
         // Getting adapter by passing xml data ArrayList
         adapter=new LazyAdapter(this, comList);
