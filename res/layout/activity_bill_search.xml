@@ -69,5 +69,17 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="查询" />
+    
+    <TextView
+        android:id="@+id/history_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="历史查询记录" 
+        />
+    
+    <ListView android:id="@+id/android:list"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent" />  
         
 </LinearLayout>
