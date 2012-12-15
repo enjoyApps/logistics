@@ -3,10 +3,9 @@
  */
 package com.example.logistics_ui.taobao;
 
-import com.taobao.top.android.TopAndroidClient;
-//import com.taobao.top.android.TopAndroidClient.Env;
-
 import android.app.Application;
+
+import com.taobao.top.android.TopAndroidClient;
 
 
 /**

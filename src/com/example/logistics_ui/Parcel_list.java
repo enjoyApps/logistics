@@ -1,7 +1,7 @@
 package com.example.logistics_ui;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class Parcel_list extends Activity {

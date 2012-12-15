@@ -32,6 +32,7 @@ public class Bill_result extends ListActivity {
 
 	private TextView bill_lastest = null;
 
+
 	private LogisticInfo logisticsInfo = null;
 
 	private List<String> jingguo = new ArrayList<String>();

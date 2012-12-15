@@ -1,15 +1,14 @@
 package com.example.logistics_ui;
 
-import com.example.logistics_ui.model.LogisticsCompany;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+
+import com.example.logistics_ui.model.LogisticsCompany;
 
 public class Logistics_Manager extends TabActivity {
 	

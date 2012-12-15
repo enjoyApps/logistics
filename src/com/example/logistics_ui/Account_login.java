@@ -2,9 +2,6 @@ package com.example.logistics_ui;
 
 import java.util.Date;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;

@@ -17,7 +17,7 @@ public class LogisticsCompanyUtil {
 	
 	static{
 
-		logisticsCompanyList.add(new LogisticsCompany("汇通快运","huitong","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("汇通快递","huitong","10086"));
 		logisticsCompanyList.add(new LogisticsCompany("顺丰速递","shunfeng","10086"));
 		logisticsCompanyList.add(new LogisticsCompany("德邦物流","debang","10086"));
 		logisticsCompanyList.add(new LogisticsCompany("新邦物流","xinbang","10086"));

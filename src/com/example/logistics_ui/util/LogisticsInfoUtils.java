@@ -9,10 +9,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.example.logistics_ui.model.LogisticInfo;
 import com.example.logistics_ui.model.TrackInfo;
-
-import android.util.Log;
 
 /**
  * @author zhenggangji

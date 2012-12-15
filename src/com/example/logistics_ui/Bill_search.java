@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,14 +25,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.logistics_ui.datestore.LogisticInfoDao;
-import com.example.logistics_ui.model.LogisticsCompany;
 import com.example.logistics_ui.model.LogisticInfo;
+import com.example.logistics_ui.model.LogisticsCompany;
 import com.example.logistics_ui.util.Actions;
 import com.example.logistics_ui.util.DateUtil;
 import com.example.logistics_ui.util.HttpListener;
@@ -43,7 +47,7 @@ import com.example.logistics_ui.util.NetUtils;
  * @author zhenggangji
  * 
  */
-public class Bill_search extends Activity {
+public class Bill_search extends ListActivity {
 
 	private LogisticsCompany selectedLogisticsCompany = null;
 
@@ -62,6 +66,8 @@ public class Bill_search extends Activity {
 	private LogisticInfoDao logisticInfoDao = null;
 
 	List<LogisticInfo> logisticInfoHistList = null;
+
+	private TextView history_title = null;
 
 	public static void hideSoftKeyboard(Activity activity, View view) {
 		InputMethodManager imm = (InputMethodManager) activity
@@ -149,9 +155,49 @@ public class Bill_search extends Activity {
 		logisticInfoDao = new LogisticInfoDao(this);
 
 		logisticInfoHistList = logisticInfoDao.queryAll();
-		
+
+		history_title = (TextView) findViewById(R.id.history_title);
+		if (logisticInfoHistList == null && logisticInfoHistList.size() == 0) {
+			history_title.setVisibility(4);
+		} else {
+			setHistoryStringArray(logisticInfoHistList);
+		}
+
 		Log.d("DEBUG", "logisticInfoHistList---" + logisticInfoHistList);
 
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		logisticInfoHistList = logisticInfoDao.queryAll();
+
+		history_title = (TextView) findViewById(R.id.history_title);
+		if (logisticInfoHistList == null && logisticInfoHistList.size() == 0) {
+			history_title.setVisibility(4);
+		} else {
+			setHistoryStringArray(logisticInfoHistList);
+		}
+	}
+
+	/**
+	 * @param logisticInfoHistList
+	 */
+	private void setHistoryStringArray(List<LogisticInfo> logisticInfoHistList) {
+		String[] historyStringArray = new String[logisticInfoHistList.size()];
+		for (int i = 0; i < historyStringArray.length; i++) {
+			if (logisticInfoHistList.get(i) != null)
+				historyStringArray[i] = logisticInfoHistList.get(i)
+						.getExpTextName()
+						+ "\t"
+						+ logisticInfoHistList.get(i).getMailNo()
+						+ "\t"
+						+ logisticInfoHistList.get(i).getQueryTime();
+		}
+		history_title.setVisibility(0);
+		setListAdapter(new ArrayAdapter<String>(Bill_search.this,
+				android.R.layout.simple_list_item_1, historyStringArray));
 	}
 
 	/**
@@ -341,11 +387,26 @@ public class Bill_search extends Activity {
 
 				logisticsInfo.setQueryTime(DateUtil.getFormatDateTime(
 						new Date(), DateUtil.yyyyMMddFormat));
+				LogisticInfo logisticsInfo_test = logisticInfoDao
+						.query(logisticsInfo);
+				Log.d("DEBUG", "logisticsInfo---" + logisticsInfo);
+				Log.d("DEBUG", "logisticsInfo_test---" + logisticsInfo_test);
+				if (logisticsInfo_test != null) {
+					logisticInfoDao.delete(logisticsInfo_test.getId());
+				}
 
 				logisticInfoDao.insert(logisticsInfo);
 
 				logisticInfoHistList = logisticInfoDao.queryAll();
-				
+
+				if (logisticInfoHistList.size() > 20) {
+					logisticInfoDao.delete(logisticInfoHistList.get(
+							logisticInfoHistList.size() - 1).getId());
+					logisticInfoHistList
+							.remove(logisticInfoHistList.size() - 1);
+				}
+				setHistoryStringArray(logisticInfoHistList);
+
 				Log.d("DEBUG", "logisticInfoHistList---" + logisticInfoHistList);
 
 				Intent i = new Intent(Bill_search.this, Bill_result.class);
@@ -380,7 +441,12 @@ public class Bill_search extends Activity {
 			Toast.makeText(Bill_search.this, "error: " + data,
 					Toast.LENGTH_SHORT).show();
 		}
-
+		
+	}
+	
+	public void onListItemClick(ListView parent, View v, int position, long id) {
+		logistics_com_edit.setText(logisticInfoHistList.get(position).getExpTextName());
+		logistics_num_edit.setText(logisticInfoHistList.get(position).getMailNo());
 	}
 
 }

@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class DateUtil {
 	
-	public static final String yyyyMMddFormat = "yyyy-MM-dd";
+	public static final String yyyyMMddFormat = "yyyy-MM-dd HH:mm:ss";
 	
 	public static String getFormatDateTime(Date date, String format) {
 		DateFormat df = new SimpleDateFormat(format);

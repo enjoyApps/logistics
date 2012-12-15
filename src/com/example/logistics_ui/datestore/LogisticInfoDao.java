@@ -57,28 +57,34 @@ public class LogisticInfoDao {
         values.put(LogisticColumns.TIME, "");
   
         // 更新person表中id为指定值的记录  
-        db.update("LogisticInfo", values, LogisticColumns.TIME+"=?", new String[] { p.getQueryTime() });  
+        db.update("LogisticInfo", values, LogisticColumns._ID+"=?", new String[] { String.valueOf(p.getId())});  
           
         db.close();  
     }  
   
-    public LogisticInfo query(LogisticInfo p) {  
-        SQLiteDatabase db = helper.getReadableDatabase();  
-          
-        // 执行查询: 不去重复, 表是person, 查询name和balance两列, Where条件是"id=?", 占位符是id, 不分组, 没有having, 不排序, 没有分页  
-        Cursor c = db.query(false, "LogisticInfo", new String[]{LogisticColumns._ID,LogisticColumns.LOGISTIC_COMPANY, LogisticColumns.LOGISTIC_NO}, LogisticColumns.LOGISTIC_COMPANY+"=?", new String[]{p.getExpTextName()}, null, null, null, null);   
-          
-        LogisticInfo p2 = null;  
-        // 判断Cursor是否有下一条记录  
-        if (c.moveToNext())  
-            // 从Cursor中获取数据, 创建Person对象  
-            p2 = new LogisticInfo(c.getInt(0), c.getString(1), c.getString(2),c.getString(3));  
-          
-        // 释放资源  
-        c.close();  
-        db.close();  
-        return p;  
-    }  
+	public LogisticInfo query(LogisticInfo p) {
+		SQLiteDatabase db = helper.getReadableDatabase();
+
+		// 执行查询: 不去重复, 表是person, 查询name和balance两列, Where条件是"id=?", 占位符是id, 不分组,
+		// 没有having, 不排序, 没有分页
+		Cursor c = db.query(false, "LogisticInfo", new String[] {
+				LogisticColumns._ID, LogisticColumns.LOGISTIC_COMPANY,
+				LogisticColumns.LOGISTIC_NO, LogisticColumns.TIME },
+				LogisticColumns.LOGISTIC_COMPANY + "=? and "+LogisticColumns.LOGISTIC_NO + "=?",
+				new String[] { p.getExpTextName(),p.getMailNo() }, null, null, null, null);
+
+		LogisticInfo p2 = null;
+		// 判断Cursor是否有下一条记录
+		if (c.moveToNext())
+			// 从Cursor中获取数据, 创建Person对象
+			p2 = new LogisticInfo(c.getInt(0), c.getString(1), c.getString(2),
+					c.getString(3));
+
+		// 释放资源
+		c.close();
+		db.close();
+		return p2;
+	}
   
     public List<LogisticInfo> queryAll() {  
         SQLiteDatabase db = helper.getReadableDatabase();  

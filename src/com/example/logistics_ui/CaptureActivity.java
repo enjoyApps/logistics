@@ -16,7 +16,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-import com.example.logistics_ui.R;
 import com.example.logistics_ui.camera.CameraManager;
 import com.example.logistics_ui.camera.decoding.CaptureActivityHandler;
 import com.example.logistics_ui.camera.decoding.InactivityTimer;
