@@ -48,11 +48,7 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
 
 
     private GoogleMap mMap;
-    private Polyline mMutablePolyline;
-    private SeekBar mColorBar;
-    private SeekBar mAlphaBar;
-    private SeekBar mWidthBar;
-    
+
     private Geocoder geocoder = null;
     
     private List<String> locals;
@@ -128,9 +124,6 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
         mMap.addPolyline((new PolylineOptions())
                 .add(latLngArray).geodesic(true).color(Color.BLUE).width(5));
         
-        mColorBar.setOnSeekBarChangeListener(this);
-        mAlphaBar.setOnSeekBarChangeListener(this);
-        mWidthBar.setOnSeekBarChangeListener(this);
 
         // Move the map so that it is centered on the mutable polyline.
         if(ptList!=null && ptList.size()>0)
@@ -152,19 +145,6 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (mMutablePolyline == null) {
-            return;
-        }
 
-        if (seekBar == mColorBar) {
-            mMutablePolyline.setColor(Color.HSVToColor(
-                    Color.alpha(mMutablePolyline.getColor()), new float[] {progress, 1, 1}));
-        } else if (seekBar == mAlphaBar) {
-            float[] prevHSV = new float[3];
-            Color.colorToHSV(mMutablePolyline.getColor(), prevHSV);
-            mMutablePolyline.setColor(Color.HSVToColor(progress, prevHSV));
-        } else if (seekBar == mWidthBar) {
-            mMutablePolyline.setWidth(progress);
-        }
     }
 }
