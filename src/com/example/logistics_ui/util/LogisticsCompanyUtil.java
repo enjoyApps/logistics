@@ -7,6 +7,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.example.logistics_ui.model.LogisticsCompany;
 
+/**
+ * @author zhenggangji
+ *
+ */
 public class LogisticsCompanyUtil {
 	
 	private static final List<LogisticsCompany> logisticsCompanyList = new ArrayList<LogisticsCompany>();
@@ -23,6 +27,20 @@ public class LogisticsCompanyUtil {
 	 */
 	public static List<LogisticsCompany> getAllLogisticsCompany() {
 		return logisticsCompanyList;
+	}
+	
+	/**
+	 * @return
+	 */
+	public static String[] getAllLogisticsCompanyName() {
+		
+		String[] logisticsCompanyName = new String[logisticsCompanyList.size()];
+		
+		for (int i = 0; i < logisticsCompanyList.size(); i++) {
+			logisticsCompanyName[i] = logisticsCompanyList.get(i).getName();
+		}
+		
+		return logisticsCompanyName;
 	}
 	
 	/**
