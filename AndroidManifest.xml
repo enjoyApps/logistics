@@ -92,6 +92,10 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name="com.example.logistics_ui.PolylineActivity"
+            android:label="@string/polyline" />
+        
     </application>
 
 </manifest>

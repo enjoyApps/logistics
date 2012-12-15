@@ -29,13 +29,12 @@ public class Bill_result extends ListActivity {
 	private TextView to_com_call = null;
 
 	private TextView bill_no = null;
-	
+
 	private TextView bill_lastest = null;
-	
+
 	private LogisticsInfo logisticsInfo = null;
-	
+
 	private List<String> jingguo = new ArrayList<String>();
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class Bill_result extends ListActivity {
 		com_name = (TextView) findViewById(R.id.com_name);
 		bill_no = (TextView) findViewById(R.id.bill_no);
 
-	    logisticsInfo = (LogisticsInfo) getIntent().getExtras()
+		logisticsInfo = (LogisticsInfo) getIntent().getExtras()
 				.getSerializable("logisticsInfo");
 
 		if (logisticsInfo == null) {
@@ -56,26 +55,34 @@ public class Bill_result extends ListActivity {
 		com_name.setText(logisticsInfo.getExpTextName());
 
 		bill_no.setText(logisticsInfo.getMailNo());
-		
+
 		jingguo = getIntent().getStringArrayListExtra("jingguo");
-		
-		bill_lastest = (TextView) findViewById(R.id.com_name);
-		
-		if(jingguo!=null && jingguo.size()>0){
-			bill_lastest.setText(jingguo.get(jingguo.size()-1));
+
+		bill_lastest = (TextView) findViewById(R.id.bill_lastest);
+
+		if (logisticsInfo.getTrackInfoList() != null
+				&& logisticsInfo.getTrackInfoList().size() > 0) {
+			bill_lastest.setText("最新状态：已到  "
+					+ (logisticsInfo.getTrackInfoList().get(logisticsInfo
+							.getTrackInfoList().size() - 1)).getContext());
 		} else {
 			bill_lastest.setText("");
 		}
 
 		ImageButton call_com_btn = (ImageButton) findViewById(R.id.to_com_call);
-		
-		String phoneNo = LogisticsCompanyUtil.getPhoneNoByPinyin(logisticsInfo.getExpSpellName());
-		if(StringUtils.isNotBlank(phoneNo));
+
+		String phoneNo = LogisticsCompanyUtil.getPhoneNoByPinyin(logisticsInfo
+				.getExpSpellName());
+		if (StringUtils.isNotBlank(phoneNo))
+			;
 		call_com_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// 打开拨号键盘
 				Intent intent = new Intent("android.intent.action.CALL", Uri
-						.parse("tel:" + LogisticsCompanyUtil.getPhoneNoByPinyin(logisticsInfo.getExpSpellName())));
+						.parse("tel:"
+								+ LogisticsCompanyUtil
+										.getPhoneNoByPinyin(logisticsInfo
+												.getExpSpellName())));
 				startActivity(intent);
 			}
 		});
@@ -92,16 +99,14 @@ public class Bill_result extends ListActivity {
 					+ " "
 					+ logisticsInfo.getTrackInfoList().get(i).getContext();
 		}
-		
+
 		setListAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, logistics_list));
 	}
 
 	public void onListItemClick(ListView parent, View v, int position, long id) {
-		Intent inmap = new Intent(Bill_result.this,
-				PolylineActivity.class);
-		inmap.putStringArrayListExtra("locals", new ArrayList<String>(
-				jingguo));
+		Intent inmap = new Intent(Bill_result.this, PolylineActivity.class);
+		inmap.putStringArrayListExtra("locals", new ArrayList<String>(jingguo));
 		startActivity(inmap);
 		Toast.makeText(this, "You have selected " + logistics_list[position],
 				Toast.LENGTH_SHORT).show();

@@ -73,6 +73,10 @@ public class Bill_search extends Activity {
 				.getLocationJasonArray(jasonStr);
 
 		setDefaultLocations(jsonArray);
+		
+		logistics_num_edit = (EditText) findViewById(R.id.logistics_num_edit);
+		
+		logistics_com_edit = (EditText) findViewById(R.id.logistics_com_edit);
 
 		ImageButton choose_com_btn = (ImageButton) findViewById(R.id.choose_com_button);
 		choose_com_btn.setOnClickListener(new View.OnClickListener() {
@@ -320,6 +324,8 @@ public class Bill_search extends Activity {
 				
 				
 				jingguo = LogisticsInfoUtils.getLocations(logisticsInfo, dizhi);
+				Log.d("DEBUG", "jingguo---"
+						+ jingguo);
 				bundle.putSerializable("jingguo", new ArrayList<String>(
 						jingguo));
 				i.putExtras(bundle);
