@@ -27,6 +27,7 @@
 	            android:layout_height="28dp"
 	            android:layout_marginLeft="10dp"
 	            android:layout_toRightOf="@id/com_name"
+	            android:background="@drawable/blue_button"
 	            android:baselineAlignBottom="false"
 	            android:cropToPadding="false"
 	            android:src="@drawable/device_access_call_s" />
