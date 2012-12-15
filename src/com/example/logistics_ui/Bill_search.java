@@ -93,7 +93,7 @@ public class Bill_search extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		
-		if(StringUtils.equals(data.getAction(), Actions.chose))
+		if(StringUtils.equals(data.getAction(), Actions.chose_logistics_company))
 		switch (resultCode)  
 	    {  
 	      case RESULT_OK: /* 取得数据，并显示于画面上 */

@@ -11,12 +11,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.logistics_ui.model.LogisticsCompany;
+import com.example.logistics_ui.util.Actions;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
 
 public class Logistics_list extends ListActivity {
 	
 	
-	Spinner s1;
+	//Spinner s1;
 	
     @Override  
     public void onCreate(Bundle savedInstanceState) 
@@ -59,6 +60,7 @@ public class Logistics_list extends ListActivity {
     	Log.d("DEBUG", "selected---"+selected);
 
     	Intent intent = new Intent();
+    	intent.setAction(Actions.chose_logistics_company);
     	Bundle bundle = new Bundle();
     	bundle.putString("selectedName", selected.getName());
     	bundle.putSerializable("selected", selected);
