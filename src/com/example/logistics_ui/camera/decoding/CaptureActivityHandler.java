@@ -66,34 +66,28 @@ public final class CaptureActivityHandler extends Handler {
 
   @Override
   public void handleMessage(Message message) {
-    switch (message.what) {
-      case R.id.auto_focus:
+      if(message.what == R.id.auto_focus){
         //Log.d(TAG, "Got auto-focus message");
         // When one auto focus pass finishes, start another. This is the closest thing to
         // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
         if (state == State.PREVIEW) {
           CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
         }
-        break;
-      case R.id.restart_preview:
-        Log.d(TAG, "Got restart preview message");
-        restartPreviewAndDecode();
-        break;
-      case R.id.decode_succeeded:
-        Log.d(TAG, "Got decode succeeded message");
-        state = State.SUCCESS;
-        Bundle bundle = message.getData();
-        Bitmap barcode = bundle == null ? null :
-            (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);
-        activity.handleDecode((Result) message.obj, barcode);
-        break;
-      case R.id.decode_failed:
-        // We're decoding as fast as possible, so when one decode fails, start another.
-        state = State.PREVIEW;
-        CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
-        break;
+      } else if(message.what==R.id.restart_preview) {
+    	  Log.d(TAG, "Got restart preview message");
+          restartPreviewAndDecode();
+      } else if(message.what==R.id.decode_succeeded) {
+    	  Log.d(TAG, "Got decode succeeded message");
+          state = State.SUCCESS;
+          Bundle bundle = message.getData();
+          Bitmap barcode = bundle == null ? null :
+              (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);
+          activity.handleDecode((Result) message.obj, barcode);
+      } else  if(message.what==R.id.decode_failed) {
+    	  state = State.PREVIEW;
+          CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+      }
 
-    }
   }
 
   public void quitSynchronously() {
