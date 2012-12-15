@@ -104,12 +104,13 @@ public class Bill_search extends Activity {
 	    
 	    	  
 	    	selectedLogisticsCompany =  (LogisticsCompany)bunde.getSerializable("selected");
-	    	
-	    	Log.d("DEBUG", "selectedLogisticsCompany---"+selectedLogisticsCompany);
-	    	
-	    	logistics_com_edit = (EditText)findViewById(R.id.logistics_com_edit);
-	    	
-	    	logistics_com_edit.setText(selectedLogisticsCompany.getName());
+	    	if(selectedLogisticsCompany != null) {
+	    		Log.d("DEBUG", "selectedLogisticsCompany---"+selectedLogisticsCompany);
+		    	
+		    	logistics_com_edit = (EditText)findViewById(R.id.logistics_com_edit);
+		    	
+		    	logistics_com_edit.setText(selectedLogisticsCompany.getName());
+	    	}
 
 	        break;  
 	      default:  
