@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/LinearLayout01"
+      android:layout_width="fill_parent"
+      android:layout_height="47dp"
+      android:background="@drawable/bg_header"
+      android:gravity="center_vertical"
+      android:layout_alignParentTop="true">
+    
+    	<!-- BACK Button -->
+        <ImageButton
+            android:id="@+id/top_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@color/transparent"
+            android:src="@drawable/navigation_previous_item" />
+        
+        <!-- title -->
+        <TextView
+            android:id="@+id/top_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:text="快递管家" />
+        	
+</RelativeLayout>

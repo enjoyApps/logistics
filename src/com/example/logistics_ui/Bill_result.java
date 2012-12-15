@@ -2,7 +2,6 @@ package com.example.logistics_ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.logistics_ui.model.LogisticsInfo;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
+import com.example.logistics_ui.util.NavBarUtil;
 
 public class Bill_result extends ListActivity {
 
@@ -35,6 +35,8 @@ public class Bill_result extends ListActivity {
 	private LogisticsInfo logisticsInfo = null;
 
 	private List<String> jingguo = new ArrayList<String>();
+	
+	public 	NavBarUtil navbar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,9 @@ public class Bill_result extends ListActivity {
 		setContentView(R.layout.activity_bill_result);
 		com_name = (TextView) findViewById(R.id.com_name);
 		bill_no = (TextView) findViewById(R.id.bill_no);
+		
+		navbar = new NavBarUtil(NavBarUtil.HEADER_BACK_STYLE, this);
+		navbar.setHeaderTitle("快递单详情");
 
 		logisticsInfo = (LogisticsInfo) getIntent().getExtras()
 				.getSerializable("logisticsInfo");
@@ -62,7 +67,7 @@ public class Bill_result extends ListActivity {
 
 		if (logisticsInfo.getTrackInfoList() != null
 				&& logisticsInfo.getTrackInfoList().size() > 0) {
-			bill_lastest.setText("最新状态：已到  "
+			bill_lastest.setText("最新状态： "
 					+ (logisticsInfo.getTrackInfoList().get(logisticsInfo
 							.getTrackInfoList().size() - 1)).getContext());
 		} else {

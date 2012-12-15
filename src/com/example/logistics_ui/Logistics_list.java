@@ -13,9 +13,11 @@ import android.widget.Toast;
 import com.example.logistics_ui.model.LogisticsCompany;
 import com.example.logistics_ui.util.Actions;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
+import com.example.logistics_ui.util.NavBarUtil;
 
 public class Logistics_list extends ListActivity {
 	
+	public 	NavBarUtil navbar;
 	
 	//Spinner s1;
 	
@@ -24,6 +26,9 @@ public class Logistics_list extends ListActivity {
     {
         super.onCreate(savedInstanceState);  
         setContentView(R.layout.activity_logistics_list);
+        
+        navbar = new NavBarUtil(NavBarUtil.HEADER_BACK_STYLE, this);
+		navbar.setHeaderTitle("选择物流公司");
  
         setListAdapter(new ArrayAdapter<String>(this,
         	android.R.layout.simple_list_item_1, LogisticsCompanyUtil.getAllLogisticsCompanyName()));

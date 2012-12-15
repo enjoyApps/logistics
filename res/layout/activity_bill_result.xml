@@ -4,6 +4,9 @@
     android:layout_height="match_parent"
     >
 	
+    <!-- Header -->
+    <include layout="@layout/header"/>
+    
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

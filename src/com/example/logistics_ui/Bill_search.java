@@ -54,7 +54,7 @@ public class Bill_search extends Activity {
 	private Map<String, Map<String, Set<String>>> dizhi = new LinkedHashMap<String, Map<String, Set<String>>>();
 
 	private Set<String> jingguo;
-
+	
 	public static void hideSoftKeyboard(Activity activity, View view) {
 		InputMethodManager imm = (InputMethodManager) activity
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -66,7 +66,7 @@ public class Bill_search extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bill_search);
-
+		
 		String jasonStr = getAllLocations();
 
 		JSONArray jsonArray = LogisticsInfoUtils
