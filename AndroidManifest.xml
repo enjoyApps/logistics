@@ -37,7 +37,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
-    <application
+    <application android:name="com.example.logistics_ui.taobao.SampleApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -76,9 +76,24 @@
             android:name=".Logistics_list"
             android:label="@string/title_activity_logistics_list" >
         </activity>
+        <!--  
         <activity
             android:name=".Account_login"
             android:label="@string/title_activity_account_login" >
+        </activity>
+        -->
+        
+        <activity
+            android:name=".Account_login"
+            android:label="@string/title_activity_account_login" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="com.taobao.top.android.sample"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                
+            </intent-filter>
         </activity>
         
         <activity
