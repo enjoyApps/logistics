@@ -62,12 +62,9 @@ public class Logistics_list extends ListActivity {
     	Intent intent = new Intent();
     	intent.setAction(Actions.chose_logistics_company);
     	Bundle bundle = new Bundle();
-    	bundle.putString("selectedName", selected.getName());
     	bundle.putSerializable("selected", selected);
     	
     	intent.putExtras(bundle);
-    	
-        intent.putExtras(bundle);
     	
     	this.setResult(RESULT_OK, intent); /* 关闭activity */
     	

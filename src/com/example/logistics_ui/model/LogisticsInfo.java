@@ -1,5 +1,6 @@
 package com.example.logistics_ui.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,12 @@ import android.util.Log;
  * @author zhenggangji
  *
  */
-public class LogisticsInfo {
+public class LogisticsInfo implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private String status, message, errCode, html, mailNo, expTextName, expSpellName, update, cache, ord;
 	

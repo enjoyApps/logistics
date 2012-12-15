@@ -14,9 +14,13 @@ import com.example.logistics_ui.model.TrackInfo;
 
 import android.util.Log;
 
+/**
+ * @author zhenggangji
+ *
+ */
 public class LogisticsInfoUtils {
 	
-	public static void getWuliuInfo(String id,String com, HttpListener listener){
+	public static void getLogisticsInfo(String id,String com, HttpListener listener){
 		String url = "http://api.ickd.cn/?com="+com+"&nu="+id+"&id=D2BCB3066D4D77EC5567712ECA489FC8&type=json&encode=utf8";
 		Log.d("DEBUG", "url: " + url);
 		new HttpDownloadAsyncTask(listener).execute(url);
@@ -43,7 +47,7 @@ public class LogisticsInfoUtils {
 	 * @param jsonStr
 	 * @return
 	 */
-	public static LogisticsInfo parseWuliuInfo(String jsonStr){
+	public static LogisticsInfo parseLogisticsInfo(String jsonStr){
 		
 		JSONObject json = null;
 		Log.d("DEBUG", "jsonStr: " + jsonStr);
