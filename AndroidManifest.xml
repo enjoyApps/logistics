@@ -81,6 +81,17 @@
             android:label="@string/title_activity_account_login" >
         </activity>
         
+        <activity
+            android:name=".CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="com.example.logistics_ui.action.qrscan" />
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>

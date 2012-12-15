@@ -13,5 +13,8 @@
     <string name="title_activity_logistics_list">Logistics_list</string>
     <string name="title_activity_account_login">Account_login</string>
     <string name="title_activity_main">快递管家</string>
+    
+    <string name="scan_for_qr">扫描条码</string>
+    <string name="scan_please_note">请将快递条码置于取景框内扫描</string>
 
 </resources>
