@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.logistics_ui.model.LogisticsInfo;
+import com.example.logistics_ui.model.LogisticInfo;
 import com.example.logistics_ui.model.TrackInfo;
 
 import android.util.Log;
@@ -47,11 +47,11 @@ public class LogisticsInfoUtils {
 	 * @param jsonStr
 	 * @return
 	 */
-	public static LogisticsInfo parseLogisticsInfo(String jsonStr){
+	public static LogisticInfo parseLogisticsInfo(String jsonStr){
 		
 		JSONObject json = null;
 		Log.d("DEBUG", "jsonStr: " + jsonStr);
-		LogisticsInfo wuliuInfo = new LogisticsInfo();
+		LogisticInfo wuliuInfo = new LogisticInfo();
 		try {
 			json = new JSONObject(jsonStr);
 		} catch (JSONException e) {
@@ -72,7 +72,7 @@ public class LogisticsInfoUtils {
 	 * @param info
 	 * @return
 	 */
-	public static Set<String> getLocations(LogisticsInfo info,
+	public static Set<String> getLocations(LogisticInfo info,
 			Map<String, Map<String, Set<String>>> dizhi) {
 		Set<String> locations = new LinkedHashSet<String>();
 		if(info==null){

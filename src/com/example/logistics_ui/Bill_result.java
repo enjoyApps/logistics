@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.logistics_ui.model.LogisticsInfo;
+import com.example.logistics_ui.model.LogisticInfo;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
 import com.example.logistics_ui.util.NavBarUtil;
 
@@ -32,7 +32,7 @@ public class Bill_result extends ListActivity {
 
 	private TextView bill_lastest = null;
 
-	private LogisticsInfo logisticsInfo = null;
+	private LogisticInfo logisticsInfo = null;
 
 	private List<String> jingguo = new ArrayList<String>();
 	
@@ -48,7 +48,7 @@ public class Bill_result extends ListActivity {
 		navbar = new NavBarUtil(NavBarUtil.HEADER_BACK_STYLE, this);
 		navbar.setHeaderTitle("快递单详情");
 
-		logisticsInfo = (LogisticsInfo) getIntent().getExtras()
+		logisticsInfo = (LogisticInfo) getIntent().getExtras()
 				.getSerializable("logisticsInfo");
 
 		if (logisticsInfo == null) {

@@ -18,7 +18,7 @@ import android.util.Log;
  * @author zhenggangji
  *
  */
-public class LogisticsInfo implements Serializable {
+public class LogisticInfo implements Serializable {
 
 	/**
 	 * 
@@ -27,7 +27,28 @@ public class LogisticsInfo implements Serializable {
 
 	private String status, message, errCode, html, mailNo, expTextName, expSpellName, update, cache, ord;
 	
+	private String queryTime;
+
 	private List<TrackInfo>  trackInfoList = new ArrayList<TrackInfo>();
+	
+	private int id;
+	
+
+
+	/**
+	 * @param id
+	 * @param expTextName
+	 * @param mailNo
+	 * @param queryTime
+	 */
+	public LogisticInfo(int id ,String expTextName,String mailNo,String queryTime){
+		super();
+		this.id = id;
+		this.expTextName=expTextName;
+		this.mailNo = mailNo;
+		this.queryTime = queryTime;
+		
+	}
 
 	public void init(JSONObject json) {
 		
@@ -156,6 +177,23 @@ public class LogisticsInfo implements Serializable {
 
 	public void setCache(String cache) {
 		this.cache = cache;
+	}
+	
+	public String getQueryTime() {
+		return queryTime;
+	}
+
+
+	public void setQueryTime(String queryTime) {
+		this.queryTime = queryTime;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String toString(){

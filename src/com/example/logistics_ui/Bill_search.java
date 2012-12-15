@@ -28,7 +28,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.logistics_ui.model.LogisticsCompany;
-import com.example.logistics_ui.model.LogisticsInfo;
+import com.example.logistics_ui.model.LogisticInfo;
 import com.example.logistics_ui.util.Actions;
 import com.example.logistics_ui.util.HttpListener;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
@@ -49,7 +49,7 @@ public class Bill_search extends Activity {
 
 	private ProgressDialog pd;
 
-	private LogisticsInfo logisticsInfo = null;
+	private LogisticInfo logisticsInfo = null;
 
 	private Map<String, Map<String, Set<String>>> dizhi = new LinkedHashMap<String, Map<String, Set<String>>>();
 
