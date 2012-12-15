@@ -317,7 +317,13 @@ public class Bill_search extends Activity {
 				Intent i = new Intent(Bill_search.this, Bill_result.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("logisticsInfo", logisticsInfo);
+				
+				
+				jingguo = LogisticsInfoUtils.getLocations(logisticsInfo, dizhi);
+				bundle.putSerializable("jingguo", new ArrayList<String>(
+						jingguo));
 				i.putExtras(bundle);
+				
 				startActivity(i);
 				break;
 			case HttpListener.GOTO_MAP:

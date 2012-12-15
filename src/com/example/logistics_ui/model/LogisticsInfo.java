@@ -2,12 +2,15 @@ package com.example.logistics_ui.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import android.util.Log;
 
@@ -48,6 +51,15 @@ public class LogisticsInfo implements Serializable {
 				trackInfo.setContext(authorArray.getJSONObject(i).getString("context"));
 				trackInfoList.add(trackInfo);
 			}
+			
+			Comparator<TrackInfo> comparator = new Comparator<TrackInfo>() {
+				@Override
+				public int compare(TrackInfo lhs, TrackInfo rhs) {
+					// TODO Auto-generated method stub
+					return lhs.getTime().compareTo(rhs.getTime());
+				}
+			};
+			Collections.sort(trackInfoList, comparator);
 
 		} catch (JSONException jsone) {
 			Log.e("EXCEPTION", "JSON FAIL --- " + jsone.getMessage());
