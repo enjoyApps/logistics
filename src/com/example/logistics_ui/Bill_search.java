@@ -91,9 +91,10 @@ public class Bill_search extends Activity {
 				// TODO: hide the keyboard
 				// View view = v.findViewById(android.R.id.bill_search);
 				// hideSoftKeyboard(this, view);
-				fetchlogisticsInfo(LogisticsCompanyUtil
-						.getPinyinByName(logistics_num_edit.getText()
-								.toString()), logistics_com_edit.getText()
+				fetchlogisticsInfo(logistics_num_edit.getText()
+								.toString(), LogisticsCompanyUtil
+								.getPinyinByName(logistics_com_edit.getText()
+										.toString())
 						.toString());
 
 			}
