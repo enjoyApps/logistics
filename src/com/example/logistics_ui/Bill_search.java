@@ -157,7 +157,7 @@ public class Bill_search extends ListActivity {
 		logisticInfoHistList = logisticInfoDao.queryAll();
 
 		history_title = (TextView) findViewById(R.id.history_title);
-		if (logisticInfoHistList == null && logisticInfoHistList.size() == 0) {
+		if (logisticInfoHistList == null || logisticInfoHistList.size() == 0) {
 			history_title.setVisibility(4);
 		} else {
 			setHistoryStringArray(logisticInfoHistList);
@@ -174,7 +174,7 @@ public class Bill_search extends ListActivity {
 		logisticInfoHistList = logisticInfoDao.queryAll();
 
 		history_title = (TextView) findViewById(R.id.history_title);
-		if (logisticInfoHistList == null && logisticInfoHistList.size() == 0) {
+		if (logisticInfoHistList == null || logisticInfoHistList.size() == 0) {
 			history_title.setVisibility(4);
 		} else {
 			setHistoryStringArray(logisticInfoHistList);

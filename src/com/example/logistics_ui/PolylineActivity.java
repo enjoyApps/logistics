@@ -42,9 +42,8 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
         
         geocoder = new Geocoder(this,Locale.CHINA);
         
+
         setContentView(R.layout.activity_polyline);
-        
-        
         
 
         locals = getIntent().getStringArrayListExtra("locals");
@@ -116,7 +115,7 @@ public class PolylineActivity extends android.support.v4.app.FragmentActivity
         // Move the map so that it is centered on the mutable polyline.
         if(ptList!=null && ptList.size()>0){
         	mMap.moveCamera(CameraUpdateFactory.newLatLng(ptList.get(0)));
-        	mMap.animateCamera(CameraUpdateFactory.zoomTo(7), 3000, null);
+        	mMap.animateCamera(CameraUpdateFactory.zoomTo(10.9F), 3000, null);
         	for (int i = 0; i < latLngArray.length; i++) {
         		mMap.animateCamera(CameraUpdateFactory.newLatLng(ptList.get(i)),2000, null);
 			}
