@@ -33,7 +33,9 @@ public class LogisticInfo implements Serializable {
 	
 	private int id;
 	
-
+	public LogisticInfo(){
+		super();
+	}
 
 	/**
 	 * @param id
