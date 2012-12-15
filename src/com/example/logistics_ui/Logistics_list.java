@@ -54,11 +54,18 @@ public class Logistics_list extends ListActivity {
     public void onListItemClick(ListView parent, View v,int position, long id) 
     {   
     	
-    	Intent intent = getIntent();
     	
     	LogisticsCompany selected = LogisticsCompanyUtil.getLogisticsCompanyByNanme(LogisticsCompanyUtil.getAllLogisticsCompanyName()[position]);
     	Log.d("DEBUG", "selected---"+selected);
-    	intent.getExtras().putSerializable("selected", selected);
+
+    	Intent intent = new Intent();
+    	Bundle bundle = new Bundle();
+    	bundle.putString("selectedName", selected.getName());
+    	bundle.putSerializable("selected", selected);
+    	
+    	intent.putExtras(bundle);
+    	
+        intent.putExtras(bundle);
     	
     	this.setResult(RESULT_OK, intent); /* 关闭activity */
     	

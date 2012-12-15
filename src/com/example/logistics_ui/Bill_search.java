@@ -41,8 +41,9 @@ public class Bill_search extends Activity {
             	
             	Intent i = new Intent(Bill_search.this, Logistics_list.class);
             	Bundle bundle = new Bundle();
+            	bundle.putString("ok", "ok");
             	i.putExtras(bundle);
-            	startActivityForResult(i,0);
+            	startActivityForResult(i,1);
             }
         });
 		
@@ -71,14 +72,18 @@ public class Bill_search extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
 		
 		switch (resultCode)  
 	    {  
 	      case RESULT_OK: /* 取得数据，并显示于画面上 */
-	    	
-	    	Log.d("DEBUG", "Extras---"+data.getExtras());
 	    	  
-	    	selectedLogisticsCompany =  (LogisticsCompany)data.getExtras().getSerializable("selected");
+	    	Bundle bunde = data.getExtras();  
+	    	
+	    	Log.d("DEBUG", "selectedName---"+bunde.getString("selectedName"));
+	    
+	    	  
+	    	selectedLogisticsCompany =  (LogisticsCompany)bunde.getSerializable("selected");
 	    	
 	    	Log.d("DEBUG", "selectedLogisticsCompany---"+selectedLogisticsCompany);
 	    	
@@ -91,7 +96,6 @@ public class Bill_search extends Activity {
 	        break;  
 	    }  
 		
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 }

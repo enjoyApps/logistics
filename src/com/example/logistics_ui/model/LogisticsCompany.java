@@ -2,6 +2,8 @@ package com.example.logistics_ui.model;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 /**
  * 
  * 物流公司信息模型
@@ -50,6 +52,10 @@ public class LogisticsCompany implements Serializable{
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+	
+	public String toString(){
+		return ReflectionToStringBuilder.toString(this);
 	}
 
 }
