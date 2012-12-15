@@ -2,7 +2,11 @@ package com.example.logistics_ui;
 
 import java.util.Date;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -11,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.taobao.top.android.TopAndroidClient;
+import com.taobao.top.android.api.TopTqlListener;
 import com.taobao.top.android.auth.AccessToken;
 import com.taobao.top.android.auth.AuthActivity;
 import com.taobao.top.android.auth.AuthError;
@@ -34,6 +39,54 @@ public class Account_login extends AuthActivity {
 		to_login_taobao=(ImageButton)this.findViewById(R.id.to_login_taobao);
         //topResult = (TextView)this.findViewById(R.id.topResult);
         if(nick!=null){
+        	
+        	String ql="{select tid,order_code,seller_nick,buyer_nick,delivery_start,delivery_end,out_sid,item_title,receiver_name, created,modified,status,type,freight_payer,seller_confirm,company_name from logistics.trace where buyer_nick="+nick+" and start_created=2012-12-01 00:00:00}";
+        	Log.d("DEBUG",
+					"TOQ ql---" + ql);
+        	client.tql(ql, userId, new TopTqlListener(){
+
+				@Override
+				public void onComplete(String result) {
+					Log.d("DEBUG",
+							"TOQ result---" + result);
+					
+					if (TextUtils.isEmpty(result)) {
+						return;
+					}
+//					String[] array = result.split("\r\n");
+//					String title = "";
+//					for (int i = 0; i < array.length; i++) {
+//						JSONObject json;
+//						try {
+//							json = new JSONObject(array[i]);
+//							JSONObject j = json
+//									.optJSONObject("item_get_response");
+//							if (j != null) {
+//								j = j.optJSONObject("item");
+//								if (j != null) {
+//									String t = j.optString("title");
+//									title += t;
+//									title += "\n";
+//								}
+//							}
+//						} catch (JSONException e) {
+//							Log.e(TAG, e.getMessage(), e);
+//						}
+//
+//					}
+
+					//setTopResultText(title);
+
+				}
+
+				@Override
+				public void onException(Exception e) {
+					// TODO Auto-generated method stub
+					
+				}}, true);
+
+
+        	
         	//this.setTopResultText(nick);
         }
         to_login_taobao.setOnClickListener(new OnClickListener(){
