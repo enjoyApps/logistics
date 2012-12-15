@@ -1,5 +1,7 @@
 package com.example.logistics_ui;
 
+import com.example.logistics_ui.model.LogisticsCompany;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.TabActivity;
@@ -10,6 +12,11 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 public class Logistics_Manager extends TabActivity {
+	
+	/**
+	 * 
+	 */
+	private LogisticsCompany selectedLogisticsCompany = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

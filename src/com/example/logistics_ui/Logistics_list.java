@@ -1,13 +1,16 @@
 package com.example.logistics_ui;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.logistics_ui.model.LogisticsCompany;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
 
 public class Logistics_list extends ListActivity {
@@ -50,9 +53,22 @@ public class Logistics_list extends ListActivity {
  
     public void onListItemClick(ListView parent, View v,int position, long id) 
     {   
-        Toast.makeText(this, 
-            "You have selected " + LogisticsCompanyUtil.getAllLogisticsCompanyName()[position], 
-            Toast.LENGTH_SHORT).show();
+    	
+    	Intent intent = getIntent();
+    	
+    	LogisticsCompany selected = LogisticsCompanyUtil.getLogisticsCompanyByNanme(LogisticsCompanyUtil.getAllLogisticsCompanyName()[position]);
+    	Log.d("DEBUG", "selected---"+selected);
+    	intent.getExtras().putSerializable("selected", selected);
+    	
+    	this.setResult(RESULT_OK, intent); /* 关闭activity */
+    	
+    	Toast.makeText(this, 
+                "You have selected " + selected.getName(), 
+                Toast.LENGTH_SHORT).show();
+    	
+    	this.finish();
+    	
+        
     } 
 
 }

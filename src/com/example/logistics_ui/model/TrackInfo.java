@@ -1,5 +1,7 @@
 package com.example.logistics_ui.model;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 /**
@@ -8,8 +10,13 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
  * @author zhenggangji
  *
  */
-public class TrackInfo {
+public class TrackInfo implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String time;
 	
 	private String context;

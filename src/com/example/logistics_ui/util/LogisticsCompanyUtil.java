@@ -47,6 +47,19 @@ public class LogisticsCompanyUtil {
 	 * @param name
 	 * @return
 	 */
+	public static LogisticsCompany getLogisticsCompanyByNanme(String name){
+		for(LogisticsCompany entry:logisticsCompanyList){
+			if(StringUtils.equalsIgnoreCase(name, entry.getName())){
+				return entry;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * @param name
+	 * @return
+	 */
 	public static String getPhoneNoByNanme(String name){
 		for(LogisticsCompany entry:logisticsCompanyList){
 			if(StringUtils.equalsIgnoreCase(name, entry.getName())){

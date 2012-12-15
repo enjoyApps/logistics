@@ -1,10 +1,13 @@
 package com.example.logistics_ui;
 
+import com.example.logistics_ui.model.LogisticsCompany;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,6 +17,10 @@ import android.widget.ImageButton;
 import android.widget.TabHost.TabSpec;
 
 public class Bill_search extends Activity {
+	
+	private LogisticsCompany selectedLogisticsCompany = null;
+	
+	private EditText logistics_com_edit = null;
 	
 	public static void hideSoftKeyboard (Activity activity, View view) {
 	  InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -26,12 +33,16 @@ public class Bill_search extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bill_search);
 		
+		
+		
 		ImageButton choose_com_btn = (ImageButton) findViewById(R.id.choose_com_button);
 		choose_com_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
             	Intent i = new Intent(Bill_search.this, Logistics_list.class);
-				startActivity(i);
+            	Bundle bundle = new Bundle();
+            	i.putExtras(bundle);
+            	startActivityForResult(i,0);
             }
         });
 		
@@ -55,6 +66,32 @@ public class Bill_search extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_bill_search, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		
+		switch (resultCode)  
+	    {  
+	      case RESULT_OK: /* 取得数据，并显示于画面上 */
+	    	
+	    	Log.d("DEBUG", "Extras---"+data.getExtras());
+	    	  
+	    	selectedLogisticsCompany =  (LogisticsCompany)data.getExtras().getSerializable("selected");
+	    	
+	    	Log.d("DEBUG", "selectedLogisticsCompany---"+selectedLogisticsCompany);
+	    	
+	    	logistics_com_edit = (EditText)findViewById(R.id.logistics_com_edit);
+	    	
+	    	logistics_com_edit.setText(selectedLogisticsCompany.getName());
+
+	        break;  
+	      default:  
+	        break;  
+	    }  
+		
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 }

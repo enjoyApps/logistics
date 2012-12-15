@@ -1,13 +1,20 @@
 package com.example.logistics_ui.model;
 
+import java.io.Serializable;
+
 /**
  * 
  * 物流公司信息模型
  * @author zhenggangji
  *
  */
-public class LogisticsCompany {
+public class LogisticsCompany implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String name;
 	
 	private String pinyin;
