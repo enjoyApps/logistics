@@ -1,5 +1,7 @@
 package com.example.logistics_ui;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +13,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.logistics_ui.model.LogisticsCompany;
+import com.example.logistics_ui.util.Actions;
 
 public class Bill_search extends Activity {
 	
 	private LogisticsCompany selectedLogisticsCompany = null;
 	
 	private EditText logistics_com_edit = null;
+	
+	private EditText logistics_num_edit = null;
 	
 	
 	
@@ -60,7 +66,7 @@ public class Bill_search extends Activity {
             }
         });
 		
-		Button choose_num_button = (Button) findViewById(R.id.choose_num_button);
+		ImageButton choose_num_button = (ImageButton) findViewById(R.id.choose_num_button);
 		choose_num_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
@@ -86,8 +92,8 @@ public class Bill_search extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
 		
+		if(StringUtils.equals(data.getAction(), Actions.chose))
 		switch (resultCode)  
 	    {  
 	      case RESULT_OK: /* 取得数据，并显示于画面上 */
@@ -108,7 +114,22 @@ public class Bill_search extends Activity {
 	        break;  
 	      default:  
 	        break;  
-	    }  
+	    }
+		if(StringUtils.equals(data.getAction(), Actions.scan))
+		if (resultCode == RESULT_OK) {
+            //String codeFormat = data.getStringExtra("bracode_format");
+            String codeText = data.getStringExtra("bracode_text");
+            logistics_num_edit  = (EditText)findViewById(R.id.logistics_num_edit);
+            if (codeText!=null && !"".equals(codeText)) {
+            	logistics_num_edit.setText(codeText);
+                //fetchBookInfo(codeText);
+            } else {
+                Toast.makeText(this, "没有找到运单号", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
 		
 	}
 

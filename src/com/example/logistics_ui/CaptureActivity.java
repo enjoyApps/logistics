@@ -20,6 +20,7 @@ import com.example.logistics_ui.R;
 import com.example.logistics_ui.camera.CameraManager;
 import com.example.logistics_ui.camera.decoding.CaptureActivityHandler;
 import com.example.logistics_ui.camera.decoding.InactivityTimer;
+import com.example.logistics_ui.util.Actions;
 import com.example.logistics_ui.view.ViewfinderView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -154,7 +155,7 @@ public class CaptureActivity extends Activity implements Callback {
 //				+ obj.getText());
 		
 		Intent i = new Intent();
-		i.setAction("com.example.logistics_ui.action.qrscan");
+		i.setAction(Actions.scan);
 		
 		Bundle b = new Bundle();
 		b.putString("bracode_format", obj.getBarcodeFormat().toString());
