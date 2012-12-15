@@ -92,6 +92,9 @@ public class Bill_search extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+		
+		if(data == null) return;
 		
 		if(StringUtils.equals(data.getAction(), Actions.chose_logistics_company))
 		switch (resultCode)  
@@ -130,8 +133,6 @@ public class Bill_search extends Activity {
 
         }
 
-        super.onActivityResult(requestCode, resultCode, data);
-		
 	}
 
 }
