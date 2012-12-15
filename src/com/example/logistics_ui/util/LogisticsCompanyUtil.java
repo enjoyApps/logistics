@@ -19,7 +19,16 @@ public class LogisticsCompanyUtil {
 
 		logisticsCompanyList.add(new LogisticsCompany("汇通快运","huitong","10086"));
 		logisticsCompanyList.add(new LogisticsCompany("顺丰速递","shunfeng","10086"));
-		logisticsCompanyList.add(new LogisticsCompany("汇通快运","huitong","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("德邦物流","debang","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("新邦物流","xinbang","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("天天快递","tiantian","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("佳吉快运","jiaji","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("申通快递","shentong","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("圆通速递","yuantong","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("韵达快运","yunda","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("中通速递","zhongtong","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("中铁物流","zhongtie","10086"));
+		logisticsCompanyList.add(new LogisticsCompany("EMS","ems","10086"));
 	}
 	
 	/**

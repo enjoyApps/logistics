@@ -48,8 +48,8 @@ public class LazyAdapter extends BaseAdapter {
         info = data.get(position);
  
         // Setting all values in listview
-        name.setText(info.get(CustomizedListView.KEY_TITLE));
-        tel.setText(info.get(CustomizedListView.KEY_ARTIST));
+        name.setText(info.get("com_name"));
+        tel.setText(info.get("com_tel"));
         return vi;
     }
 }

@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -15,15 +18,6 @@ import com.example.logistics_ui.model.LogisticsCompany;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
 
 public class CustomizedListView extends Activity {
-    // All static variables
-    static final String URL = "http://api.androidhive.info/music/music.xml";
-    // XML node keys
-    static final String KEY_SONG = "song"; // parent node
-    static final String KEY_ID = "com_name";
-    static final String KEY_TITLE = "com_tel";
-    static final String KEY_ARTIST = "artist";
-    static final String KEY_DURATION = "duration";
-    static final String KEY_THUMB_URL = "thumb_url";
  
     ListView list;
     LazyAdapter adapter;
@@ -35,12 +29,13 @@ public class CustomizedListView extends Activity {
         
         List<LogisticsCompany> logisticsCompanyList = LogisticsCompanyUtil.getAllLogisticsCompany();
  
-        ArrayList<HashMap<String, String>> comList = new ArrayList<HashMap<String, String>>();
+        final ArrayList<HashMap<String, String>> comList = new ArrayList<HashMap<String, String>>();
         
         
         for(LogisticsCompany LogisticsCompany : logisticsCompanyList){
         	HashMap<String, String> map = new HashMap<String, String>();
-        	map.put(LogisticsCompany.getName(), LogisticsCompany.getPhoneNo());
+        	map.put("com_name", LogisticsCompany.getName());
+        	map.put("com_tel", LogisticsCompany.getPhoneNo());
         	comList.add(map);
         }
  
@@ -53,11 +48,21 @@ public class CustomizedListView extends Activity {
         // Click event for single list row
         list.setOnItemClickListener(new OnItemClickListener() {
  
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
- 
-            }
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Toast.makeText(CustomizedListView.this,
+						"电话联系" + comList.get(position).get("com_name") + " 上门取件",
+						Toast.LENGTH_SHORT).show();
+
+				String num = comList.get(position).get("com_tel");
+
+				// 打开拨号键盘
+				Intent intent = new Intent("android.intent.action.CALL", Uri
+						.parse("tel:" + num));
+				startActivity(intent);
+
+			}
         });
     }
 }

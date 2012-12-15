@@ -32,10 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
+        android:layout_marginTop="5dp"
         android:text="圆通快递"
         android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="15dip"
+        android:textSize="20dip"
         android:textStyle="bold"/>
  
     <!-- Company Tel -->
@@ -44,9 +45,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/com_name"
-        android:textColor="#343434"
-        android:textSize="10dip"
-        android:layout_marginTop="1dip"
+        android:textColor="#444444"
+        android:textSize="14dip"
+        android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="电话：13333333333" />
  
