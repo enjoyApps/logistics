@@ -188,11 +188,9 @@ public class Bill_search extends ListActivity {
 		String[] historyStringArray = new String[logisticInfoHistList.size()];
 		for (int i = 0; i < historyStringArray.length; i++) {
 			if (logisticInfoHistList.get(i) != null)
-				historyStringArray[i] = logisticInfoHistList.get(i)
-						.getExpTextName()
-						+ "\t"
-						+ logisticInfoHistList.get(i).getMailNo()
-						+ "\t"
+				historyStringArray[i] = StringUtils.rightPad(logisticInfoHistList.get(i)
+						.getExpTextName(), 30)
+						+ StringUtils.rightPad(logisticInfoHistList.get(i).getMailNo(), 30)
 						+ logisticInfoHistList.get(i).getQueryTime();
 		}
 		history_title.setVisibility(0);
