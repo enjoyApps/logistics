@@ -3,8 +3,10 @@ package com.example.logistics_ui;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,9 +29,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.logistics_ui.datestore.LogisticInfoDao;
 import com.example.logistics_ui.model.LogisticsCompany;
 import com.example.logistics_ui.model.LogisticInfo;
 import com.example.logistics_ui.util.Actions;
+import com.example.logistics_ui.util.DateUtil;
 import com.example.logistics_ui.util.HttpListener;
 import com.example.logistics_ui.util.LogisticsCompanyUtil;
 import com.example.logistics_ui.util.LogisticsInfoUtils;
@@ -54,7 +58,11 @@ public class Bill_search extends Activity {
 	private Map<String, Map<String, Set<String>>> dizhi = new LinkedHashMap<String, Map<String, Set<String>>>();
 
 	private Set<String> jingguo;
-	
+
+	private LogisticInfoDao logisticInfoDao = null;
+
+	List<LogisticInfo> logisticInfoHistList = null;
+
 	public static void hideSoftKeyboard(Activity activity, View view) {
 		InputMethodManager imm = (InputMethodManager) activity
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -66,16 +74,16 @@ public class Bill_search extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bill_search);
-		
+
 		String jasonStr = getAllLocations();
 
 		JSONArray jsonArray = LogisticsInfoUtils
 				.getLocationJasonArray(jasonStr);
 
 		setDefaultLocations(jsonArray);
-		
+
 		logistics_num_edit = (EditText) findViewById(R.id.logistics_num_edit);
-		
+
 		logistics_com_edit = (EditText) findViewById(R.id.logistics_com_edit);
 
 		ImageButton choose_com_btn = (ImageButton) findViewById(R.id.choose_com_button);
@@ -137,6 +145,12 @@ public class Bill_search extends Activity {
 
 			}
 		});
+
+		logisticInfoDao = new LogisticInfoDao(this);
+
+		logisticInfoHistList = logisticInfoDao.queryAll();
+		
+		Log.d("DEBUG", "logisticInfoHistList---" + logisticInfoHistList);
 
 	}
 
@@ -311,32 +325,39 @@ public class Bill_search extends Activity {
 				logisticsInfo = LogisticsInfoUtils.parseLogisticsInfo(String
 						.valueOf(data));
 				pd.hide();
-				
-				if(logisticsInfo == null){
+
+				if (logisticsInfo == null) {
 					Toast.makeText(Bill_search.this, "当前网络繁忙请重试",
 							Toast.LENGTH_SHORT).show();
 					return;
 				}
-				
-				if(logisticsInfo.getTrackInfoList()==null || logisticsInfo.getTrackInfoList().size()==0){
+
+				if (logisticsInfo.getTrackInfoList() == null
+						|| logisticsInfo.getTrackInfoList().size() == 0) {
 					Toast.makeText(Bill_search.this, "没有快递信息，请确认单号和快递公司",
 							Toast.LENGTH_SHORT).show();
 					return;
 				}
+
+				logisticsInfo.setQueryTime(DateUtil.getFormatDateTime(
+						new Date(), DateUtil.yyyyMMddFormat));
+
+				logisticInfoDao.insert(logisticsInfo);
+
+				logisticInfoHistList = logisticInfoDao.queryAll();
 				
-				
+				Log.d("DEBUG", "logisticInfoHistList---" + logisticInfoHistList);
+
 				Intent i = new Intent(Bill_search.this, Bill_result.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("logisticsInfo", logisticsInfo);
-				
-				
+
 				jingguo = LogisticsInfoUtils.getLocations(logisticsInfo, dizhi);
-				Log.d("DEBUG", "jingguo---"
-						+ jingguo);
-				bundle.putSerializable("jingguo", new ArrayList<String>(
-						jingguo));
+				Log.d("DEBUG", "jingguo---" + jingguo);
+				bundle.putSerializable("jingguo",
+						new ArrayList<String>(jingguo));
 				i.putExtras(bundle);
-				
+
 				startActivity(i);
 				break;
 			case HttpListener.GOTO_MAP:
