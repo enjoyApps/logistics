@@ -37,7 +37,7 @@ public class Account_login extends AuthActivity {
         //topResult = (TextView)this.findViewById(R.id.topResult);
         if(nick!=null){
         	
-        	String ql="{select tid,order_code,seller_nick,buyer_nick,delivery_start,delivery_end,out_sid,item_title,receiver_name, created,modified,status,type,freight_payer,seller_confirm,company_name from logistics.orders where buyer_nick="+nick+" and start_created=2012-12-01 00:00:00}";
+        	String ql="{select tid,order_code,seller_nick,buyer_nick,delivery_start,delivery_end,out_sid,item_title,receiver_name, created,modified,status,type,freight_payer,seller_confirm,company_name from logistics.trace where buyer_nick="+nick+" and start_created=2012-12-01 00:00:00}";
         	Log.d("DEBUG",
 					"TOQ ql---" + ql);
         	client.tql(ql, userId, new TopTqlListener(){
