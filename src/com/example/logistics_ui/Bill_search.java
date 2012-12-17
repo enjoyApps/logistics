@@ -440,6 +440,12 @@ public class Bill_search extends ListActivity {
 					Toast.LENGTH_SHORT).show();
 		}
 		
+		@Override
+		public int getType() {
+			// TODO Auto-generated method stub
+			return this.type;
+		}
+		
 	}
 	
 	public void onListItemClick(ListView parent, View v, int position, long id) {

@@ -8,6 +8,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,6 +32,10 @@ public class HttpDownloadAsyncTask extends AsyncTask<Object, Object, Object> {
 	protected Object doInBackground(Object... urls) {
 		// TODO Auto-generated method stub
 		try {
+			if(taskListener.MAP_INI == taskListener.getType()){
+				return getLocationInfo(String.valueOf(urls[0]));
+			}
+			
 			return downloadUrl(String.valueOf(urls[0]));
 		} catch (IOException e) {
 			return "Unable to retrieve web page. URL may be invalid.";
@@ -34,6 +47,31 @@ public class HttpDownloadAsyncTask extends AsyncTask<Object, Object, Object> {
 		// TODO Auto-generated method stub
 		taskListener.onTaskCompleted(result);
 		
+	}
+	
+	public static String getLocationInfo(String url) {
+		StringBuilder stringBuilder = new StringBuilder();
+		try {
+			HttpPost httppost = new HttpPost(url);
+			HttpClient client = new DefaultHttpClient();
+			HttpResponse response;
+			stringBuilder = new StringBuilder();
+
+			response = client.execute(httppost);
+			HttpEntity entity = response.getEntity();
+			InputStream stream = entity.getContent();
+			int b;
+			while ((b = stream.read()) != -1) {
+				stringBuilder.append((char) b);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return stringBuilder.toString();
+
 	}
 
 	// Given a URL, establishes an HttpUrlConnection and retrieves

@@ -26,6 +26,18 @@ public class LogisticsInfoUtils {
 		new HttpDownloadAsyncTask(listener).execute(url);
 	}
 	
+	public static void getLogisticsInfoNoMap(String address, HttpListener listener){
+		
+		address = address.replaceAll(" ", "%20");
+		
+		String url = "http://maps.google.com/maps/api/geocode/json?address="
+							+ address + "&sensor=false&region=cn";
+		Log.d("DEBUG", "url: " + url);
+		new HttpDownloadAsyncTask(listener).execute(url);
+	}
+	
+	
+	
 	
 	/**
 	 * @param str

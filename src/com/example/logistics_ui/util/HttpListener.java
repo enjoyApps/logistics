@@ -21,8 +21,12 @@ public interface HttpListener {
 	
 	public static final int GOTO_MAP = 11;
 	
+	public static final int MAP_INI = 12;
+	
 	public void onTaskCompleted(Object data);
 	
 	public void onTaskFailed(String data);
+	
+	public int getType();
 	
 }
